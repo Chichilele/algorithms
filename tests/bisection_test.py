@@ -15,17 +15,21 @@ class TestBisectionClass(unittest.TestCase):
         self.bisection = Bisection(f)
 
     def test_initialization(self):
-        self.assertEqual(self.bisection.f(0), 2, "incorrect function")
+        self.assertEqual(self.bisection.f(0), 0, "incorrect function")
 
-    
     def test_solve(self):
         with self.assertRaises(ValueError):
             self.bisection.solve(5, 5)
         with self.assertRaises(Exception):
             self.bisection.solve(1.0001, 2.99, max_iter=0)
         self.assertEqual(self.bisection.solve(-1, 1), 0, "incorrect exact solution")
-        self.assertEqual(self.bisection.solve(-1, .5), 1/(2**9), "incorrect approx solution")
+        self.assertEqual(
+            self.bisection.solve(-1, 0.5), 1 / (2 ** 9), "incorrect approx solution"
+        )
 
+    def test_plot_epochs(self):
+        self.bisection.solve(-1, 0.5)
+        self.bisection.plot_epochs()
 
 
 if __name__ == "__main__":
