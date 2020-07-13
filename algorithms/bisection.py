@@ -11,9 +11,7 @@ class Bisection(Method,):
     """
 
     def __init__(self, f=None):
-        Method.__init__(self)
-        self.f = f
-        self.epochs = None
+        Method.__init__(self, f)
 
     def solve(self, a, b, tol=10e-3, max_iter=100):
 
@@ -51,15 +49,7 @@ class Bisection(Method,):
                 a = c
             else:
                 b = c
-        
-        raise Exception("Reached maximum number of iterations without finding a solution")
+        raise Exception(
+            "Convergence error. Reached maximum number of iterations without finding a stable enough solution"
+        )
 
-    def plot_epochs(self):
-
-        """ plot the epochs from solve.
-        """
-
-        import matplotlib.pyplot as plt
-        plt.scatter(self.epochs, self.f(self.epochs), c=range(len(self.epochs)))
-        plt.ylabel('Epochs')
-        plt.show()
