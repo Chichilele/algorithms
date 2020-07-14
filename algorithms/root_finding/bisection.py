@@ -8,12 +8,16 @@ class Bisection(Method,):
 
     Attributes:
         f (function): function to search root against
+        tol (float): tolerance
+        max_iter (int): maximum number of iteration
     """
 
-    def __init__(self, f=None):
-        Method.__init__(self, f)
+    def __init__(self, f, tol=1e-2, max_iter=1000):
+        Method.__init__(self, f, tol, max_iter)
 
-    def solve(self, a, b, tol=10e-3, max_iter=100):
+    def solve(
+        self, a, b,
+    ):
 
         """run the Bisection root-finding method starting between points a and b. 
         Stops if tolerance is matched or raise error if max interation reached.
@@ -21,11 +25,9 @@ class Bisection(Method,):
         Args:
             a (float): first interval boundary
             b (float): second interval boundary
-            tol (float): tolerance error on objective (c)
-            max_iter (int): maximum number of iterations before interrupting the algorithm.
 
         Returns:
-            float: compute root within interval.
+            float: computed root within interval.
         """
 
         self.epochs = []
@@ -39,10 +41,10 @@ class Bisection(Method,):
                 f"Same sign. f(a): {sign(self.f(a))},\tf(b): {sign(self.f(b))}"
             )
 
-        for n in range(max_iter):
+        for _ in range(self.max_iter):
             c = (a + b) / 2
             self.epochs.append(c)
-            if (0 == self.f(c)) or ((b - a) / 2 < tol):  # solution found
+            if (0 == self.f(c)) or ((b - a) / 2 < self.tol):  # solution found
                 return c
 
             if sign(self.f(c)) == sign(self.f(a)):  # new interval
@@ -52,4 +54,11 @@ class Bisection(Method,):
         raise Exception(
             "Convergence error. Reached maximum number of iterations without finding a stable enough solution"
         )
+
+    def __repr__(self):
+        return super().__repr__()
+
+
+if __name__ == "__main__":
+    print(Bisection(lambda x: x * x, 1e-1, 100))
 
