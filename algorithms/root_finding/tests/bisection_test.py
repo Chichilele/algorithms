@@ -6,7 +6,7 @@
 
 import unittest
 
-from algorithms import Bisection
+from algorithms.root_finding import Bisection
 
 
 class TestBisectionClass(unittest.TestCase):
@@ -26,10 +26,6 @@ class TestBisectionClass(unittest.TestCase):
         self.assertEqual(
             self.bisection.solve(-1, 0.5), 1 / (2 ** 9), "incorrect approx solution"
         )
-
-    def test_plot_epochs(self):
-        self.bisection.solve(-1, 0.5)
-        self.bisection.plot_epochs()
 
 
 if __name__ == "__main__":
