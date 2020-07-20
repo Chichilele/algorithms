@@ -16,6 +16,9 @@ class TestBisectionClass(unittest.TestCase):
 
     def test_initialization(self):
         self.assertEqual(self.bisection.f(0), 0, "incorrect function")
+        self.assertEqual(self.bisection.tol, 1e-2, "incorrect tol init")
+        self.assertEqual(self.bisection.max_iter, 1000, "incorrect max_iter init")
+        self.assertEqual(self.bisection.__repr__(), 'Bisection: tolerance(0.01)\tmax iter(1000)', "incorrect repr init")
 
     def test_solve(self):
         with self.assertRaises(ValueError):

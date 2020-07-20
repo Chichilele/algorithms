@@ -13,7 +13,7 @@ class Bisection(Method,):
     """
 
     def __init__(self, f, tol=1e-2, max_iter=1000):
-        Method.__init__(self, f, tol, max_iter)
+        Method.__init__(self, f=f, tol=tol, max_iter=max_iter)
 
     def solve(
         self, a, b,
