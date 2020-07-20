@@ -1,3 +1,5 @@
+import numpy as np
+
 class Method:
     """ Generic method class for calculating and 
         visualizing a root-finding algorithm.
@@ -24,8 +26,8 @@ class Method:
 
         import matplotlib.pyplot as plt
 
-        plt.scatter(self.epochs, self.f(self.epochs), c=range(len(self.epochs)))
-        plt.ylabel("Epochs")
+        plt.plot(self.epochs,)
+        plt.ylabel("Epochs of root")
         plt.show()
 
     def __repr__(self):
