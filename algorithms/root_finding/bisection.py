@@ -8,29 +8,29 @@ class Bisection(Method,):
 
     Attributes:
         f (function): function to search root against
+        a (float): first interval boundary
+        b (float): second interval boundary
         tol (float): tolerance
         max_iter (int): maximum number of iteration
     """
 
-    def __init__(self, f, tol=1e-2, max_iter=1000):
+    def __init__(self, f, a, b, tol=1e-2, max_iter=1000):
         Method.__init__(self, f=f, tol=tol, max_iter=max_iter)
+        self.a = a
+        self.b = b
 
-    def solve(
-        self, a, b,
-    ):
+    def solve(self,):
 
         """run the Bisection root-finding method starting between points a and b. 
-        Stops if tolerance is matched or raise error if max interation reached.
-
-        Args:
-            a (float): first interval boundary
-            b (float): second interval boundary
+        Stops if tolerance is matched or raise error if max iteration reached.
 
         Returns:
             float: computed root within interval.
         """
-
+        a = self.a
+        b = self.b
         self.epochs = []
+
         if 0 == self.f(a):
             return a
         elif 0 == self.f(b):
