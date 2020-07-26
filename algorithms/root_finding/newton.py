@@ -14,7 +14,11 @@ class Newton(Method):
         self.x0 = x0
 
     def solve(self):
-        """Solve Newton root-finding method
+        """Run the Newton-Raphson root-finding method starting with points x0 and x1. 
+        Stops if tolerance is matched or raise error if max iteration reached.
+
+        Returns:
+            float: computed root within interval.
         """
 
         ## init
