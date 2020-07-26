@@ -1,9 +1,3 @@
-# Any changes to the distributions library should be reinstalled with
-#  pip install --upgrade .
-
-# For running unit tests, use
-# /usr/bin/python -m unittest test
-
 import unittest
 
 from algorithms.root_finding import Newton
@@ -29,7 +23,7 @@ class TestNewtonClass(unittest.TestCase):
         )
 
     def test_solve(self):
-        self.assertLessEqual(self.newton.solve(), 10 - 1)
+        self.assertLessEqual(self.newton.solve(), 10e-1)
         self.newton.max_iter = 1
         with self.assertRaises(Exception):
             self.newton.solve()
